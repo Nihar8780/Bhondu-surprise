@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>For My Favorite Person — A Friendship Day Letter</title>
+<meta name="description" content="A little digital letter, made just for you." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Styles -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!--
+==============================================
+  PERSONALIZATION QUICK MAP (for humans, not JS)
+==============================================
+  Search this file for "EDIT ME" to find every
+  place you can safely change text.
+  Names/settings that JS also needs live in
+  js/main.js under PERSONALIZATION SETTINGS.
+==============================================
+-->
+
+<!-- Decorative, non-content layer for floating hearts / particles -->
+<div class="fx-layer" id="fxLayer" aria-hidden="true"></div>
+
+<!-- Floating music toggle (works everywhere, fails silently without an mp3) -->
+<button type="button" id="musicToggle" class="music-toggle" aria-pressed="false" aria-label="Play background music">
+  <span class="music-toggle__icon" aria-hidden="true">♪</span>
+  <span class="music-toggle__status" id="musicStatus">Music Off</span>
+</button>
+<audio id="bgMusic" loop preload="none">
+  <source src="assets/music/dooron_dooron.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ============================================= -->
+<!-- 1. INTRO SCREEN                                -->
+<!-- ============================================= -->
+<section id="intro" class="screen intro-screen" aria-label="Introduction">
+  <div class="intro-particles" aria-hidden="true"></div>
+  <div class="intro-content">
+    <p class="eyebrow">a little something for</p>
+    <!-- EDIT ME: intro line -->
+    <h1 class="script-heading intro-title">Someone special left you something...</h1>
+    <button type="button" id="introBtn" class="btn btn--glow">Tap to begin</button>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- 2. ENVELOPE EXPERIENCE                         -->
+<!-- ============================================= -->
+<section id="envelopeSection" class="screen envelope-screen" aria-label="Open your letter">
+  <div class="envelope-hearts" id="envelopeHearts" aria-hidden="true"></div>
+
+  <div class="envelope-wrap">
+    <button type="button" id="envelope" class="envelope" aria-label="Tap the envelope to open your letter">
+      <span class="envelope__back"></span>
+      <span class="envelope__letter-peek"></span>
+      <span class="envelope__flap"></span>
+      <span class="envelope__front-left"></span>
+      <span class="envelope__front-right"></span>
+      <span class="envelope__seal">♥</span>
+    </button>
+  </div>
+
+  <p class="script-heading envelope-caption">A Letter For You 💌</p>
+  <p class="envelope-hint" id="envelopeHint">Tap the envelope...</p>
+</section>
+
+<!-- =============================================
+     MAIN STORY CONTENT
+     Hidden behind the envelope only once JS confirms
+     it works. If JS fails, this is visible by default
+     (see css/style.css .no-js rules) so nothing is
+     ever permanently stuck behind an animation.
+============================================== -->
+<main id="storyContent" class="story-content">
+
+  <!-- ============================================= -->
+  <!-- 3. THE LETTER                                  -->
+  <!-- ============================================= -->
+  <section id="letter" class="section letter-section" aria-label="The letter">
+    <div class="paper-card letter-card">
+      <p class="script-heading letter-heading">To My Favorite Person...</p>
+
+      <!-- ==============================
+           EDIT ME: LETTER MESSAGE
+           Replace everything inside <div class="letter-body">
+      =============================== -->
+      <div class="letter-body">
+        <p>Heyyy Bhonduuu ❤️</p>
+        <p>I don't know where to begin...</p>
+        <p>Some people enter our lives quietly, and somehow become one of the
+          most important parts of our story.</p>
+        <p>You're one of those people.</p>
+        <p>Thank you for every laugh, every stupid conversation, every memory,
+          and every moment that somehow became special just because you were there.</p>
+      </div>
+
+      <p class="letter-footer">Scroll down... there is more 💗</p>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- 4. FRIENDSHIP TIMELINE                         -->
+  <!-- ============================================= -->
+  <section id="timeline" class="section timeline-section" aria-label="Our story timeline">
+    <p class="eyebrow">the story so far</p>
+    <h2 class="script-heading section-title">Our Little Story</h2>
+
+    <!-- ==============================
+         EDIT ME: TIMELINE ITEMS
+         Duplicate a <li class="timeline__item"> block to add more entries.
+    =============================== -->
+    <ol class="timeline">
+      <li class="timeline__item reveal-on-scroll">
+        <div class="timeline__dot" aria-hidden="true"></div>
+        <div class="timeline__card">
+          <span class="timeline__date">Year One</span>
+          <h3 class="timeline__title">The Beginning</h3>
+          <p class="timeline__text">Two strangers who somehow ended up talking
+            way longer than either of us expected.</p>
+        </div>
+      </li>
+      <li class="timeline__item reveal-on-scroll">
+        <div class="timeline__dot" aria-hidden="true"></div>
+        <div class="timeline__card">
+          <span class="timeline__date">Not Long After</span>
+          <h3 class="timeline__title">The First Memories</h3>
+          <p class="timeline__text">Inside jokes that made no sense to anyone
+            else, and somehow that made them ours.</p>
+        </div>
+      </li>
+      <li class="timeline__item reveal-on-scroll">
+        <div class="timeline__dot" aria-hidden="true"></div>
+        <div class="timeline__card">
+          <span class="timeline__date">Somewhere in the Middle</span>
+          <h3 class="timeline__title">The Chaotic Era</h3>
+          <p class="timeline__text">The plans that fell apart, the late nights,
+            the moments we still bring up and laugh about.</p>
+        </div>
+      </li>
+      <li class="timeline__item reveal-on-scroll">
+        <div class="timeline__dot" aria-hidden="true"></div>
+        <div class="timeline__card">
+          <span class="timeline__date">Always</span>
+          <h3 class="timeline__title">The Best Conversations</h3>
+          <p class="timeline__text">The ones that started with nothing and
+            somehow lasted till 3am.</p>
+        </div>
+      </li>
+      <li class="timeline__item reveal-on-scroll">
+        <div class="timeline__dot" aria-hidden="true"></div>
+        <div class="timeline__card">
+          <span class="timeline__date">Today</span>
+          <h3 class="timeline__title">The Memories We'll Never Forget</h3>
+          <p class="timeline__text">Still writing this list, honestly. That's
+            kind of the best part.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- 5. PHOTO MEMORY GALLERY                        -->
+  <!-- ============================================= -->
+  <section id="gallery" class="section gallery-section" aria-label="Photo memories">
+    <p class="eyebrow">frozen moments</p>
+    <h2 class="script-heading section-title">Little Pieces of Us</h2>
+    <p class="section-subtitle">Tap a photo to see it up close.</p>
+
+    <!-- ==============================
+         EDIT ME: PHOTOS
+         Change src to your own photos in assets/images/
+         Change data-caption for each photo's memory text.
+         If an image is missing, a soft placeholder shows instead —
+         nothing will break.
+    =============================== -->
+    <div class="gallery-grid">
+      <button type="button" class="polaroid reveal-on-scroll" style="--rot:-4deg" data-caption="The first photo we ever took together.">
+        <span class="polaroid__frame">
+          <img src="assets/images/IMG_9302.JPG" alt="Memory one" loading="lazy" onerror="this.closest('.polaroid').classList.add('polaroid--fallback')">
+        </span>
+        <span class="polaroid__label">memory one</span>
+      </button>
+      <button type="button" class="polaroid reveal-on-scroll" style="--rot:3deg" data-caption="That one trip we still talk about.">
+        <span class="polaroid__frame">
+          <img src="assets/images/IMG_20260528_153242.jpg" alt="Memory two" loading="lazy" onerror="this.closest('.polaroid').classList.add('polaroid--fallback')">
+        </span>
+        <span class="polaroid__label">memory two</span>
+      </button>
+      <button type="button" class="polaroid reveal-on-scroll" style="--rot:-2deg" data-caption="The most unnecessarily chaotic afternoon.">
+        <span class="polaroid__frame">
+          <img src="assets/images/IMG_20260528_153343.jpg" alt="Memory three" loading="lazy" onerror="this.closest('.polaroid').classList.add('polaroid--fallback')">
+        </span>
+        <span class="polaroid__label">memory three</span>
+      </button>
+      <button type="button" class="polaroid reveal-on-scroll" style="--rot:5deg" data-caption="A completely normal Tuesday, somehow iconic.">
+        <span class="polaroid__frame">
+          <img src="assets/images/IMG_20260708_235711.png" alt="Memory four" loading="lazy" onerror="this.closest('.polaroid').classList.add('polaroid--fallback')">
+        </span>
+        <span class="polaroid__label">memory four</span>
+      </button>
+      <button type="button" class="polaroid reveal-on-scroll" style="--rot:-3deg" data-caption="Proof that we've always been a little ridiculous.">
+        <span class="polaroid__frame">
+          <img src="assets/images/file_00000000c5e8720b9ce03b946f467e55.png" alt="Memory five" loading="lazy" onerror="this.closest('.polaroid').classList.add('polaroid--fallback')">
+        </span>
+        <span class="polaroid__label">memory five</span>
+      </button>
+      <button type="button" class="polaroid reveal-on-scroll" style="--rot:2deg" data-caption="One of my favorites, honestly.">
+        <span class="polaroid__frame">
+          <img src="assets/images/file_00000000bdac82118a5d1da9dc16de52.png" alt="Memory six" loading="lazy" onerror="this.closest('.polaroid').classList.add('polaroid--fallback')">
+        </span>
+        <span class="polaroid__label">memory six</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Lightbox modal for gallery -->
+  <div id="lightbox" class="lightbox" hidden>
+    <div class="lightbox__backdrop" data-close></div>
+    <div class="lightbox__panel" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption">
+      <button type="button" class="lightbox__close" data-close aria-label="Close photo">&times;</button>
+      <img id="lightboxImg" class="lightbox__img" src="" alt="">
+      <p id="lightboxCaption" class="lightbox__caption"></p>
+    </div>
+  </div>
+
+  <!-- ============================================= -->
+  <!-- 6. MEMORY CARDS                                -->
+  <!-- ============================================= -->
+  <section id="memoryCards" class="section memory-section" aria-label="Little confessions">
+    <p class="eyebrow">a few little truths</p>
+    <h2 class="script-heading section-title">Things I've Never Said Out Loud</h2>
+    <p class="section-subtitle">Tap a card to reveal it.</p>
+
+    <!-- ==============================
+         EDIT ME: MEMORY CARDS
+         Front text is the prompt, back text is the reveal.
+    =============================== -->
+    <div class="memory-grid">
+      <button type="button" class="flip-card reveal-on-scroll" aria-expanded="false">
+        <span class="flip-card__inner">
+          <span class="flip-card__face flip-card__face--front">One thing I love about our friendship...</span>
+          <span class="flip-card__face flip-card__face--back">is that I never have to pretend to be anything other than exactly who I am.</span>
+        </span>
+      </button>
+      <button type="button" class="flip-card reveal-on-scroll" aria-expanded="false">
+        <span class="flip-card__inner">
+          <span class="flip-card__face flip-card__face--front">You'll probably never know...</span>
+          <span class="flip-card__face flip-card__face--back">how many hard days got a little easier just because you texted first.</span>
+        </span>
+      </button>
+      <button type="button" class="flip-card reveal-on-scroll" aria-expanded="false">
+        <span class="flip-card__inner">
+          <span class="flip-card__face flip-card__face--front">My favorite memory...</span>
+          <span class="flip-card__face flip-card__face--back">is honestly too hard to pick. There are too many good ones.</span>
+        </span>
+      </button>
+      <button type="button" class="flip-card reveal-on-scroll" aria-expanded="false">
+        <span class="flip-card__inner">
+          <span class="flip-card__face flip-card__face--front">The funniest thing about us...</span>
+          <span class="flip-card__face flip-card__face--back">is that we can turn literally nothing into a two-hour conversation.</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- 7. INTERACTIVE SURPRISE                        -->
+  <!-- ============================================= -->
+  <section id="surprise" class="section surprise-section" aria-label="A little surprise">
+    <p class="eyebrow">one more thing</p>
+    <h2 class="script-heading section-title">One Last Little Surprise...</h2>
+    <button type="button" id="surpriseBtn" class="btn btn--glow" aria-expanded="false">Open My Heart ❤️</button>
+
+    <!-- ==============================
+         EDIT ME: SURPRISE MESSAGE
+    =============================== -->
+    <div class="surprise-message" id="surpriseMessage" hidden>
+      <p>You are not just a memory in my life.</p>
+      <p>You are a part of the story.</p>
+      <p>And no matter how much life changes, I'll always be grateful that our
+        paths crossed.</p>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- 8. FINAL MESSAGE                               -->
+  <!-- ============================================= -->
+  <section id="finalSection" class="section final-section" aria-label="Final message">
+    <div class="final-glow" aria-hidden="true"></div>
+    <span class="final-heart" aria-hidden="true">♥</span>
+
+    <!-- ==============================
+         EDIT ME: FINAL MESSAGE
+    =============================== -->
+    <h2 class="script-heading final-title">Happy Friendship Day ❤️</h2>
+    <p class="final-names">To my Bhonduuu, my Penguin, my favorite human, and
+      one of the most special people in my life...</p>
+    <p class="final-message">Forever grateful for us.</p>
+    <p class="final-signature">Made with ❤️ just for you.</p>
+  </section>
+
+</main>
+
+<script src="js/effects.js" defer></script>
+<script src="js/music.js" defer></script>
+<script src="js/gallery.js" defer></script>
+<script src="js/envelope.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
