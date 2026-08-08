@@ -1,0 +1,261 @@
+/* =============================================================
+   FRIENDSHIP DAY — CORE STYLES
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   PERSONALIZATION SETTINGS (colors only — for text, edit index.html)
+   Change these variables to shift the whole site's mood.
+   ------------------------------------------------------------- */
+:root {
+  /* Backgrounds */
+  --bg-cream:      #FFF4F7;
+  --bg-blush:      #FFEAF0;
+  --bg-blush-deep: #FFDCE7;
+
+  /* Pinks */
+  --pink-primary:  #FF4F87;
+  --pink-soft:     #FF8FAF;
+  --rose:          #E83E70;
+  --rose-deep:     #B52A55;
+  --wine:          #6E1F3A;
+
+  /* Text */
+  --text-main:      #4A2632;
+  --text-secondary: #8C6874;
+  --white:          #FFFFFF;
+
+  /* Derived */
+  --shadow-soft: 0 20px 60px -20px rgba(110, 31, 58, 0.25);
+  --shadow-card: 0 12px 30px -12px rgba(180, 60, 100, 0.28);
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.65);
+
+  /* Type */
+  --font-script: 'Parisienne', cursive;
+  --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --radius-lg: 28px;
+  --radius-md: 20px;
+  --radius-sm: 14px;
+
+  --content-max: 1140px;
+}
+
+/* -------------------------------------------------------------
+   RESET
+   ------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background:
+    radial-gradient(ellipse at top, var(--bg-blush) 0%, var(--bg-cream) 55%),
+    var(--bg-cream);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+img { max-width: 100%; display: block; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+a { color: var(--rose-deep); }
+
+/* Visible focus states everywhere */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--rose-deep);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.script-heading {
+  font-family: var(--font-script);
+  font-weight: 400;
+  color: var(--wine);
+  line-height: 1.25;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0 0 0.6rem;
+}
+
+/* -------------------------------------------------------------
+   SECTIONS / LAYOUT
+   ------------------------------------------------------------- */
+.screen {
+  min-height: 100svh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6vh 1.5rem;
+  position: relative;
+}
+
+.section {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: clamp(4rem, 8vw, 7rem) 1.5rem;
+  text-align: center;
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  margin: 0 0 2.5rem;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  margin: -1.6rem 0 2.5rem;
+  font-size: 0.95rem;
+}
+
+/* -------------------------------------------------------------
+   PROGRESSIVE ENHANCEMENT / FALLBACK
+   By default (no-js, or before JS confirms it works) the intro
+   and envelope screens behave like normal in-flow sections, and
+   the story content is fully visible. Once js/main.js confirms
+   the DOM is ready it switches on the gated experience.
+   ------------------------------------------------------------- */
+.story-content {
+  display: block;
+}
+
+.no-js .intro-screen,
+.no-js .envelope-screen {
+  min-height: auto;
+  padding: 4rem 1.5rem;
+}
+
+.no-js .envelope-hint::after {
+  content: " (scroll down to read it)";
+}
+
+/* Gated state: JS has taken over. Story content starts hidden and
+   is revealed by envelope.js after the letter animation completes. */
+html.js .intro-screen,
+html.js .envelope-screen {
+  min-height: 100svh;
+}
+
+html.js .story-content {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+html.js .story-content.is-revealed {
+  opacity: 1;
+  height: auto;
+  overflow: visible;
+  pointer-events: auto;
+  animation: fadeIn 1s var(--ease-out);
+}
+
+html.js .intro-screen.is-done,
+html.js .envelope-screen.is-done {
+  display: none;
+}
+
+/* Envelope screen stays out of the flow until the intro hands off
+   to it — avoids two full-height screens stacking awkwardly. */
+html.js .envelope-screen {
+  display: none;
+}
+html.js .envelope-screen.is-active {
+  display: flex;
+  animation: fadeIn 0.9s var(--ease-out);
+}
+
+/* -------------------------------------------------------------
+   BUTTONS
+   ------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.95rem 2.4rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--pink-primary), var(--rose));
+  box-shadow: var(--shadow-card);
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+  min-height: 48px;
+  min-width: 48px;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 18px 40px -14px rgba(180, 60, 100, 0.45);
+}
+
+.btn:active { transform: translateY(-1px) scale(0.99); }
+
+.btn--glow { animation: pulseGlow 2.6s ease-in-out infinite; }
+
+/* -------------------------------------------------------------
+   PAPER CARD (used by the letter)
+   ------------------------------------------------------------- */
+.paper-card {
+  background: linear-gradient(180deg, #FFFDFD, #FFF6F8);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(2rem, 6vw, 3.5rem);
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* -------------------------------------------------------------
+   FLOATING EFFECTS LAYER
+   ------------------------------------------------------------- */
+.fx-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}

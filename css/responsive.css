@@ -1,0 +1,60 @@
+/* =============================================================
+   RESPONSIVE
+   Mobile is the priority baseline; larger screens get more room.
+   ============================================================= */
+
+/* Base (mobile-first) already applied in style/components.
+   These queries fine-tune for larger widths, and pull a couple
+   of things in for very small phones. */
+
+/* Small phones */
+@media (max-width: 380px) {
+  .intro-title { font-size: 2rem; }
+  .btn { padding: 0.85rem 1.8rem; font-size: 0.92rem; }
+  .paper-card { padding: 1.6rem; }
+  .memory-grid { gap: 1rem; }
+  .flip-card { height: 200px; }
+}
+
+/* Phones -> the gallery and memory grid collapse to fewer columns */
+@media (max-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem;
+  }
+  .memory-grid {
+    grid-template-columns: 1fr;
+  }
+  .section {
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
+  .music-toggle {
+    bottom: 0.85rem;
+    right: 0.85rem;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .gallery-grid { gap: 2rem; }
+}
+
+/* Small phones landscape / very short viewports: don't force 100vh */
+@media (max-height: 560px) {
+  .screen { min-height: auto; padding: 3rem 1.5rem; }
+}
+
+/* Large desktop: give the hero envelope a touch more presence */
+@media (min-width: 1440px) {
+  .envelope { --w: 380px; }
+}
+
+/* Touch-friendly tap targets everywhere on coarse pointers */
+@media (pointer: coarse) {
+  .btn, .music-toggle, .lightbox__close, .polaroid, .flip-card {
+    min-height: 44px;
+  }
+}
